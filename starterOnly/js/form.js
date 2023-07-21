@@ -34,6 +34,7 @@ const locationError = document.getElementById("locationError");
 const conditions = document.getElementById("checkbox1");
 const conditionsError = document.getElementById("conditionsError");
 
+let mediaQueryMobile = window.matchMedia("(max-width: 540px)");
 //fonction pour ouvrir la modale
 modalBtn.forEach((btn) =>
   btn.addEventListener("click", () => {
@@ -137,9 +138,9 @@ function validQuantity() {
 }
 function validLocation() {
 
-    for(let i = 0; i < checkLocation.length; i++) {
+   
 
-      if(checkLocation[i].checked) {
+      if(checkLocation[1].checked || checkLocation[2].checked || checkLocation[3].checked || checkLocation[4].checked || checkLocation[5].checked) {
         locationError.style.display = "none";
         checkLocation.style = "default";
        
@@ -151,7 +152,7 @@ function validLocation() {
          locationError.style.fontSize = "10px";
        return false;
      }
- }
+ 
 }
 
 function validCondition(){
@@ -189,7 +190,7 @@ function validate(event){
       closeBtnConfirm.addEventListener("click", closeModal);
       return true;
     }
-    content.style.height = "815px";
+    content.style.height = "800px";
   }
   
   // listening submit event on form element so function validate is run
