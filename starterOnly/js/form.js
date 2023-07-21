@@ -55,72 +55,86 @@ let isValidForm = false;
 let regexName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
 // fonction qui verifie le respact de regex que la case soit remplit et contient plus de deux caracteres si c'est pas la cas un maessage d'erreur s'affiche
 function validFirstName() {
-  if (regexName.exec(firstName.value) === null || firstName.length < 2) {
-    firstNameError.textContent = "Veuillez entrer votre prénom ";
-    firstNameError.style.color = "red";
-    firstNameError.style.fontSize = "15px";
-    firstName.style.borderColor = "red";
-    firstName.style.borderWidth = "2px";
-    return isValidForm === false;
-  } else {
+  if (regexName.test(firstName.value)) {
     firstNameError.style.display = "none";
     firstName.style = "default";
+    return true;
+    
+  } else {
+
+    firstNameError.textContent = "Veuillez entrer votre prénom ";
+    firstNameError.style.color = "red";
+    firstNameError.style.fontSize = "10px";
+    firstName.style.borderColor = "red";
+    firstName.style.borderWidth = "2px";
+    return false;
   }
 }
 function validLastName() {
-  if (regexName.exec(lastName.value) === null || lastName.length < 2) {
+  if (regexName.test(lastName.value)) {
+    lastNameError.style.display = "none";
+    lastName.style = "default";
+    
+    return true;
+  } else {
     lastNameError.textContent = "Veuillez entrer votre nom";
     lastNameError.style.color = "red";
     lastNameError.style.fontSize = "10px";
     lastName.style.borderColor = "red";
     lastName.style.borderWidth = "2px";
-    return isValidForm === false;
-  } else {
-    lastNameError.style.display = "none";
-    lastName.style = "default";
+    return false;
   }
 }
 function validEmail() {
   // si l'email de coorespond pas au regax alors erreur
-  let regexEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
-  if (regexEmail.exec(email.value) === null) {
+  let regexEmail =/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ ;
+  if (regexEmail.test(email.value)) {
+    emailError.style.display = "none";
+    email.style = "default";
+    return true;
+  } else {
     emailError.textContent = "Veuillez renseigner votre adresse mail";
     emailError.style.color = "red";
     emailError.style.fontSize = "10px";
     email.style.borderColor = "red";
     email.style.borderWidth = "2px";
-    return isValidForm === false;
-  } else {
-    emailError.style.display = "none";
-    email.style = "default";
+    return false;
+    
   }
 }
 function validBirthday() {
-  let birthdateRegex =
-    /^(0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(19[0-9][0-9]|20[0-2][0-9])$/;
+  let birthdateRegex =/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/;
 
-  if (!birthdate.value) {
+  if (birthdateRegex.test(birthdate.value)) {
+    birthdateError.style.display = "none";
+    birthdate.style = "default";
+    return true;
+    
+  }
+  else{
     birthdateError.textContent = "Veuillez entrer votre date de naissance";
     birthdateError.style.color = "red";
     birthdateError.style.fontSize = "10px";
     birthdate.style.borderColor = "red";
     birthdate.style.borderWidth = "2px";
-    return isValidForm === false;
+    return false;
   }
-  birthdateError.style.display = "none";
-  birthdate.style = "default";
+ 
 }
+
+
 function quantityControle() {
-    if(quantity.value === "" || isNaN(quantity.value)) {
+    if(quantity.value >= 0 && parseInt(quantity.value)== quantity.value) {
+    quantityError.style.display = "none";
+    quantity.style = "default";
+    return true;
+  } else {
     quantityError.textContent = "Veuillez renseigner ce champ";
     quantityError.style.color = "red";
     quantityError.style.fontSize = "10px";
     quantity.style.borderColor = "red";
     quantity.style.borderWidth = "2px";
-    return isValidForm === false;
-  } else {
-    quantityError.style.display = "none";
-    quantity.style = "default";
+    return false;
   }
 }
 function locationControl() {
@@ -128,15 +142,16 @@ function locationControl() {
     for(let i = 0; i < checkLocation.length; i++) {
 
       if(checkLocation[i].checked) {
-        
-       locationError.textContent = "Veuillez choisir une option";
-       locationError.style.color = "red";
-        locationError.style.fontSize = "10px";
-       return isValidForm === false;
+        locationError.style.display = "none";
+        checkLocation.style = "default";
+       
+       return true;
     } 
       else {
-    locationError.style.display = "none";
-       checkLocation.style = "default";
+        locationError.textContent = "Veuillez choisir une option";
+        locationError.style.color = "red";
+         locationError.style.fontSize = "10px";
+       return false;
      }
  }
 }
