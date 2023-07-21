@@ -50,8 +50,6 @@ closeBtn.addEventListener("click", () => {
 closeBtnConfirm.style.display = "none";
 confirmationMsg.style.display = "none";
 
-let isValidForm = false;
-
 let regexName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
 // fonction qui verifie le respact de regex que la case soit remplit et contient plus de deux caracteres si c'est pas la cas un maessage d'erreur s'affiche
 function validFirstName() {
@@ -123,7 +121,7 @@ function validBirthday() {
 }
 
 
-function quantityControle() {
+function validQuantity() {
     if(quantity.value >= 0 && parseInt(quantity.value)== quantity.value) {
     quantityError.style.display = "none";
     quantity.style = "default";
@@ -137,7 +135,7 @@ function quantityControle() {
     return false;
   }
 }
-function locationControl() {
+function validLocation() {
 
     for(let i = 0; i < checkLocation.length; i++) {
 
@@ -156,31 +154,45 @@ function locationControl() {
  }
 }
 
+function validCondition(){
+    if(conditions.checked){
+        conditionsError.style.display = "none";
+        conditions.style = "default";
+        return true;
+} else {
 
-// fonction d'excution des validation
-function validate(event) {
-  event.preventDefault();
+    conditionsError.textContent = "Veuillez vérifier que vous avez accepté les termes et conditions";
+    conditionsError.style.color = "red";
+    conditionsError.style.fontSize = "10px";
+    conditions.style.borderColor = "red";
+    conditions.style.borderWidth = "2px";
+    return false;
 
-  validFirstName();
-  validLastName();
-  validEmail();
-  validBirthday();
-  quantityControle();
-    locationControl();
-
-  if (isValidForm === true) {
-    form.style.display = "none";
-    confirmationMsg.style.fontSize = "30px";
-    confirmationMsg.style.textAlign = "center";
-    closeBtnConfirm.style.display = "block";
-    submitBtn.style.display = "none";
-    confirmationMsg.style.display = "flex";
-    content.style.height = "750px";
-    closeBtnConfirm.addEventListener("click", closeModal);
-    return true;
-  }
-  
 }
 
-// ecoute de l'evenement pour que les validation soit executé
-form.addEventListener("submit", validate);
+}
+
+function validate(event){
+    
+    event.preventDefault();
+   
+   
+    if(validFirstName() && validLastName() && validEmail() && validBirthday() && validQuantity() && validLocation() && validCondition()) {
+      form.style.display = "none";
+      confirmationMsg.style.fontSize = "30px";
+      confirmationMsg.style.textAlign = "center";
+  
+      closeBtnConfirm.style.display = "block";
+      submitBtn.style.display = "none";
+      confirmationMsg.style.display = "flex";
+      content.style.height = "750px";
+      closeBtnConfirm.addEventListener("click", closeModal);
+      return true;
+    }
+    content.style.height = "815px";
+  }
+  
+  // listening submit event on form element so function validate is run
+  form.addEventListener("submit", validate);
+
+    
