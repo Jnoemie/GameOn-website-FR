@@ -1,8 +1,11 @@
 function editNav() {
   var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
+  if (x.className === "topnav") 
+  {
     x.className += " responsive";
-  } else {
+  } 
+  else 
+  {
     x.className = "topnav";
   }
 }
@@ -54,13 +57,14 @@ confirmationMsg.style.display = "none";
 let regexName = /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,}$/;
 // fonction qui verifie le respact de regex que la case soit remplit et contient plus de deux caracteres si c'est pas la cas un maessage d'erreur s'affiche
 function validFirstName() {
-  if (regexName.test(firstName.value)) {
+  if (regexName.test(firstName.value)) 
+  {
     firstNameError.style.display = "none";
     firstName.style = "default";
     return true;
-    
-  } else {
-
+  } 
+  else 
+  {
     firstNameError.textContent = "Veuillez entrer votre prénom ";
     firstNameError.style.color = "red";
     firstNameError.style.fontSize = "10px";
@@ -70,12 +74,13 @@ function validFirstName() {
   }
 }
 function validLastName() {
-  if (regexName.test(lastName.value)) {
+  if (regexName.test(lastName.value)) 
+  {
     lastNameError.style.display = "none";
     lastName.style = "default";
-    
     return true;
-  } else {
+  } 
+  else {
     lastNameError.textContent = "Veuillez entrer votre nom";
     lastNameError.style.color = "red";
     lastNameError.style.fontSize = "10px";
@@ -86,31 +91,31 @@ function validLastName() {
 }
 function validEmail() {
   // si l'email de coorespond pas au regax alors erreur
-  let regexEmail =/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/ ;
-  if (regexEmail.test(email.value)) {
+  let regexEmail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  if (regexEmail.test(email.value)) 
+  {
     emailError.style.display = "none";
     email.style = "default";
     return true;
-  } else {
+  } 
+  else
+  {
     emailError.textContent = "Veuillez renseigner votre adresse mail";
     emailError.style.color = "red";
     emailError.style.fontSize = "10px";
     email.style.borderColor = "red";
     email.style.borderWidth = "2px";
     return false;
-    
   }
 }
 function validBirthday() {
-  let birthdateRegex =/^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/;
+  let birthdateRegex = /^([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/;
 
   if (birthdateRegex.test(birthdate.value)) {
     birthdateError.style.display = "none";
     birthdate.style = "default";
     return true;
-    
-  }
-  else{
+  } else {
     birthdateError.textContent = "Veuillez entrer votre date de naissance";
     birthdateError.style.color = "red";
     birthdateError.style.fontSize = "10px";
@@ -118,12 +123,10 @@ function validBirthday() {
     birthdate.style.borderWidth = "2px";
     return false;
   }
- 
 }
 
-
 function validQuantity() {
-    if(quantity.value >= 0 && parseInt(quantity.value)== quantity.value) {
+  if (quantity.value >= 0 && parseInt(quantity.value) == quantity.value) {
     quantityError.style.display = "none";
     quantity.style = "default";
     return true;
@@ -137,63 +140,58 @@ function validQuantity() {
   }
 }
 function validLocation() {
+  if (
+    checkLocation[1].checked ||
+    checkLocation[2].checked ||
+    checkLocation[3].checked ||
+    checkLocation[4].checked ||
+    checkLocation[5].checked
+  ) {
+    locationError.style.display = "none";
+    checkLocation.style = "default";
 
-   
-
-      if(checkLocation[1].checked || checkLocation[2].checked || checkLocation[3].checked || checkLocation[4].checked || checkLocation[5].checked) {
-        locationError.style.display = "none";
-        checkLocation.style = "default";
-       
-       return true;
-    } 
-      else {
-        locationError.textContent = "Veuillez choisir une option";
-        locationError.style.color = "red";
-         locationError.style.fontSize = "10px";
-       return false;
-     }
- 
+    return true;
+  } else {
+    locationError.textContent = "Veuillez choisir une option";
+    locationError.style.color = "red";
+    locationError.style.fontSize = "10px";
+    return false;
+  }
 }
 
-function validCondition(){
-    if(conditions.checked){
-        conditionsError.style.display = "none";
-        conditions.style = "default";
-        return true;
-} else {
-
-    conditionsError.textContent = "Veuillez vérifier que vous avez accepté les termes et conditions";
+function validCondition() {
+  if (conditions.checked) {
+    conditionsError.style.display = "none";
+    conditions.style = "default";
+    return true;
+  } else {
+    conditionsError.textContent =
+      "Veuillez vérifier que vous avez accepté les termes et conditions";
     conditionsError.style.color = "red";
     conditionsError.style.fontSize = "10px";
     conditions.style.borderColor = "red";
     conditions.style.borderWidth = "2px";
     return false;
-
-}
-
-}
-
-function validate(event){
-    
-    event.preventDefault();
-   
-   
-    if(validFirstName() && validLastName() && validEmail() && validBirthday() && validQuantity() && validLocation() && validCondition()) {
-      form.style.display = "none";
-      confirmationMsg.style.fontSize = "30px";
-      confirmationMsg.style.textAlign = "center";
-  
-      closeBtnConfirm.style.display = "block";
-      submitBtn.style.display = "none";
-      confirmationMsg.style.display = "flex";
-      content.style.height = "750px";
-      closeBtnConfirm.addEventListener("click", closeModal);
-      return true;
-    }
-    content.style.height = "800px";
   }
-  
-  // listening submit event on form element so function validate is run
-  form.addEventListener("submit", validate);
+}
 
-    
+function validate(event) {
+  event.preventDefault();
+
+  if (validFirstName() && validLastName() && validEmail() && validBirthday() && validQuantity() && validLocation() && validCondition()) 
+  {
+    form.style.display = "none";
+    confirmationMsg.style.fontSize = "25px";
+    confirmationMsg.style.textAlign = "center";
+    closeBtnConfirm.style.display = "block";
+    submitBtn.style.display = "none";
+    confirmationMsg.style.display = "flex";
+    content.style.height = "750px";
+    closeBtnConfirm.addEventListener("click", closeModal);
+    return true;
+  }
+  content.style.height = "800px";
+}
+
+// listening submit event on form element so function validate is run
+form.addEventListener("submit", validate);
