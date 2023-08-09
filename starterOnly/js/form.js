@@ -193,5 +193,4 @@ function validate(event) {
   content.style.height = "800px";
 }
 
-// listening submit event on form element so function validate is run
 form.addEventListener("submit", validate);
