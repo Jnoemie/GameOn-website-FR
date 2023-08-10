@@ -14,6 +14,7 @@ const submitBtn = document.querySelector(".btn-submit");
 const modalClose = document.getElementById("validationMsg")
 const closeBtn = document.querySelector(".close");
 const closeBtnConfirm = document.getElementById("closeBtnConfirm");
+const closeDef = document.getElementsByClassName("modal-body")
 //const confirmationMsg = document.getElementById("confirmationMsg");
 const form = document.getElementById("form");
 
@@ -28,6 +29,8 @@ modalBtn.forEach((btn) =>
 
 function closeModal() {
     modalClose.style.display = "none";
+    modalbg.style.display="none";
+
   }
   
 // fonction pour fermer la modale
@@ -36,7 +39,7 @@ closeBtn.addEventListener("click", () => {
 });
   
   function successSubmit() {
-    form.style.display="none";
+        form.style.display="none";
     submitBtn.style.display = "none";
       modalClose.style.display = "block";
       closeBtnConfirm.style.display="block";
@@ -190,5 +193,5 @@ function validate(event) {
     }
         
     
-   form.addEventListener("submit", validate);
+   
   closeBtnConfirm.addEventListener("click", closeModal);
