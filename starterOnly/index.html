@@ -52,48 +52,48 @@
       <div class="bground">
         <div class="content">
           <span class="close"></span>
-          <div class="modal-body">
+          <div class="modal-body" id="modal-body-success" >
             
             <form id="form"
               name="reserve"
               action="index.html"
               method="get"
-              onsubmit="return validate();"
+              onsubmit="return validate(event);"
             >
             <!--nom-->
               <div
                 class="formData">
                 <label for="first">Prénom</label><br>
                 <input id="first" class="text-control" type="text" name="first" minlength="2"/><br>
-                <div id="firstError" class="error"></div>
+                
               </div>
               <!--premon-->
               <div
                 class="formData">
                 <label for="last">Nom</label><br>
                 <input id="last" class="text-control" type="text" name="last" minlength="2"/><br>
-                <div id="lastError" class="error"></div>
+                
               </div>
               <!--email-->
               <div
                 class="formData">
                 <label for="email">E-mail</label><br>
                 <input id="email" class="text-control" type="email" name="email"/><br>
-                <div id="emailError" class="error"></div>
+                
               </div>
               <!--date d'anniversaire-->
               <div
                 class="formData">
                 <label>Date de naissance</label><br>
                 <input id="birthdate" class="text-control" type="date" name="birthdate"/><br>
-                <div id="birthdateError" class="error"></div>
+                
               </div>
               <!--nombre de tournoi-->
               <div
                 class="formData">
                 <label>À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                 <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99">
-                <div id="quantityError" class="error"></div>
+                
               </div>
               <!--selection d'une ville -->
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
@@ -186,7 +186,7 @@
                   <span class="checkbox-icon"></span>
                   Je Je souhaite être prévenu des prochains évènements.
                 </label>
-                <div id="conditionsError" class="error"></div> 
+                
                 <br>
               </div>
               <input
@@ -196,12 +196,10 @@
                 value="C'est parti"
               />
             </form>
-          <div >
+            <div id="validationMsg" >
               <div id="confirmationMsg">Merci </br>pour votre inscription !</div>
-              <input id="closeBtnConfirm" class="button btn-submit" type="button" value="Close" />
+              <input id="closeBtnConfirm" class="button btn-submit" type="button" value="Close"/>
             </div>
-          
-          </div>
         </div>
       </div>
     </main>
@@ -211,7 +209,7 @@
       </p>
     </footer>
    <!--<script src="js/modal.js"></script>-->
-   <script src="js/form.js"></script>
+   <script src="js/esssaie.js"></script>
     
 
   </body>
