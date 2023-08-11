@@ -14,7 +14,7 @@ const submitBtn = document.querySelector(".btn-submit");
 const modalClose = document.getElementById("validationMsg")
 const closeBtn = document.querySelector(".close");
 const closeBtnConfirm = document.getElementById("closeBtnConfirm");
-const closeDef = document.getElementsByClassName("modal-body")
+//const closeDef = document.getElementsByClassName("modal-body")
 //const confirmationMsg = document.getElementById("confirmationMsg");
 const form = document.getElementById("form");
 
