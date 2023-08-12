@@ -39,12 +39,12 @@ closeBtn.addEventListener("click", () => {
 function successSubmit() {
   form.style.display = "none";
   submitBtn.style.display = "none";
-  modalClose.style.display = "block";
-  closeBtnConfirm.style.display = "block";
+  modalClose.style.display = "flex";
+  closeBtnConfirm.style.display = "flex";
 }
 
 function showError(field, type, errorMsg) {
-  //let errorField = field.parentNode.querySelector(".error"); // verification si déja un element existant
+  let errorField = field.parentNode.querySelector(".error"); // verification si déja un element existant
   if (!errorField) {
     errorField = document.createElement("p");
     errorField.className = "error";
