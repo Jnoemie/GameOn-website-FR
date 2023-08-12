@@ -6,7 +6,7 @@ function editNav() {
     responsiveNav.className = "topnav";
   }
 }
-
+// declaration des variables
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 
@@ -26,6 +26,7 @@ modalBtn.forEach((btn) =>
   })
 );
 
+//fermer la modal 
 function closeModal() {
   modalClose.style.display = "none";
   modalbg.style.display = "none";
@@ -36,6 +37,7 @@ closeBtn.addEventListener("click", () => {
   modalbg.style.display = "none";
 });
 
+// fonction quand on valide le formulaire 
 function successSubmit() {
   form.style.display = "none";
   submitBtn.style.display = "none";
@@ -43,6 +45,7 @@ function successSubmit() {
   closeBtnConfirm.style.display = "flex";
 }
 
+// fonction message erreur 
 function showError(field, type, errorMsg) {
   let errorField = field.parentNode.querySelector(".error"); // verification si déja un element existant
   if (!errorField) {
@@ -53,11 +56,13 @@ function showError(field, type, errorMsg) {
   errorField.textContent = errorMsg;
 }
 
+// fonction si on a bien rempli le champs 
 function hideError(field, type, errorMsg) {
   let errorFields = field.parentNode.querySelectorAll(".error");
   errorFields.forEach((errorField) => errorField.remove());
 }
 
+// creation dans tableau avec les different champ 
 let formFields = [
   {
     field: document.getElementById("first"),
@@ -96,6 +101,7 @@ let formFields = [
   },
 ];
 
+// fonction qui check l'un apres l'autre chaque element de notre tableau 
 function validateFields() {
   let isValid = true;
 
@@ -182,9 +188,10 @@ function validateFields() {
 function validate(event) {
   event.preventDefault(); // Empêche l'envoi du formulaire par défaut
 
-  if (validateFields()) {
-    successSubmit();
+  if (validateFields()) { // verifie les condition de validatefield 
+    successSubmit();// declanche la fonction successsubmit
   }
 }
 
-closeBtnConfirm.addEventListener("click", closeModal);
+closeBtnConfirm.addEventListener("click", closeModal); // ecoute l'event pour fermer la modal 
+
